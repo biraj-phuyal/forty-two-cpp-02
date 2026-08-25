@@ -4,39 +4,39 @@ const int Fixed::bits = 8;
 
 Fixed::Fixed (void) {
     std::cout << "Default constructor called" << std::endl;
-    this->tiny_pieces = 0;
+    this->fixed_point = 0;
 }
 
-Fixed::Fixed(const int tiny_pieces) {
+Fixed::Fixed(const int fixed_point) {
     std::cout << "Assinging constructer created" << std::endl;
-    this->tiny_pieces = tiny_pieces * 256;
+    this->fixed_point = fixed_point * 256;
 }
 
-Fixed::Fixed(const float tiny_pieces)
+Fixed::Fixed(const float fixed_point)
 {
     std::cout << "Float constructor called" << std::endl;
-    this->tiny_pieces = roundf(tiny_pieces * 256);
+    this->fixed_point = roundf(fixed_point * 256);
 }
 
 Fixed::Fixed(const Fixed& content) {
     std::cout << "Copy constructor called" << std::endl;
-    this->tiny_pieces = content.tiny_pieces;
+    this->fixed_point = content.fixed_point;
 }
 
 
 Fixed& Fixed::operator=(const Fixed& context) {
     if (this != &context)
-        this->tiny_pieces = context.getRawBits();
+        this->fixed_point = context.getRawBits();
     std::cout << "Copy assignment operator called" << std::endl;
     return *this;
 }
 
 int Fixed::toInt(void) const {
-    return (this->tiny_pieces / 256);
+    return (this->fixed_point / 256);
 }
 
 float Fixed::toFloat(void) const {
-   return static_cast<float>(this->tiny_pieces) / 256;
+   return static_cast<float>(this->fixed_point) / 256;
 }
 
 std::ostream& operator<<(std::ostream& output, const Fixed& src)
@@ -51,9 +51,9 @@ Fixed::~Fixed () {
 
 int Fixed::getRawBits( void ) const {
     std::cout << "getRawBits member function called" << std::endl;
-    return this->tiny_pieces;
+    return this->fixed_point;
 }
 
 void Fixed::setRawBits(int const raw) {
-    this->tiny_pieces = raw;
+    this->fixed_point = raw;
 }

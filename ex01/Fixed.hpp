@@ -6,12 +6,12 @@
 
 class Fixed {
     private:
-        int tiny_pieces;
+        int fixed_point;
         static const int bits;
     public:
         Fixed( void );
-        Fixed(const int tiny_pieces);
-        Fixed(const float tiny_pieces);
+        Fixed(const int fixed_point);
+        Fixed(const float fixed_point);
         Fixed(const Fixed& src);
         ~Fixed();
 
