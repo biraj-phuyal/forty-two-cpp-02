@@ -1,5 +1,7 @@
 #include "Fixed.hpp"
 
+const int Fixed::bits = 8;
+
 Fixed::Fixed (void) {
     std::cout << "Default constructor called" << std::endl;
     this->fixed_point = 0;
@@ -7,17 +9,17 @@ Fixed::Fixed (void) {
 
 Fixed::Fixed(int fixed_point) {
     std::cout << "Assinging constructer created" << std::endl;
-    this->fixed_point = fixed_point;
+    this->fixed_point = fixed_point * 256;
 }
 
 Fixed::Fixed(const Fixed& content) {
     std::cout << "Copy constructor called" << std::endl;
-    this->fixed_point = content.fixed_point;
+    this->operator=(content);
 }
 
 Fixed& Fixed::operator=(const Fixed& context) {
     if (this != &context)
-        this->fixed_point = context.fixed_point;
+        this->fixed_point = context.getRawBits();
     std::cout << "Copy assignment operator called" << std::endl;
     return *this;
 }
