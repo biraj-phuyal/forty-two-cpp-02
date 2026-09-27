@@ -2,6 +2,8 @@
 
 const int Fixed::bits = 8;
 
+// costructors
+
 Fixed::Fixed (void) {
     std::cout << "Default constructor called" << std::endl;
     this->fixed_point = 0;
@@ -23,6 +25,11 @@ Fixed::Fixed(const Fixed& content) {
     this->fixed_point = content.fixed_point;
 }
 
+Fixed::~Fixed () {
+    std::cout << "Destructor called" << std::endl;
+}
+
+// operators
 
 Fixed& Fixed::operator=(const Fixed& context) {
     if (this != &context)
@@ -105,6 +112,14 @@ Fixed Fixed::operator--(int) {
     return old;
 }
 
+std::ostream& operator<<(std::ostream& output, const Fixed& src)
+{
+    output << src.toFloat();
+    return output;
+}
+
+// member functions
+
 Fixed& Fixed::min(Fixed& first, Fixed& second) {
     if (first < second)
         return first;
@@ -135,16 +150,6 @@ int Fixed::toInt(void) const {
 
 float Fixed::toFloat(void) const {
    return static_cast<float>(this->fixed_point) / (1 << bits);
-}
-
-std::ostream& operator<<(std::ostream& output, const Fixed& src)
-{
-    output << src.toFloat();
-    return output;
-}
-
-Fixed::~Fixed () {
-    std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits( void ) const {
