@@ -8,7 +8,7 @@ Fixed::Fixed (void) {
 }
 
 Fixed::Fixed(const int fixed_point) {
-    std::cout << "Assinging constructer created" << std::endl;
+    std::cout << "Int constructer created" << std::endl;
     this->fixed_point = fixed_point * 256;
 }
 
@@ -26,7 +26,7 @@ Fixed::Fixed(const Fixed& content) {
 
 Fixed& Fixed::operator=(const Fixed& context) {
     if (this != &context)
-        this->fixed_point = context.getRawBits();
+        this->fixed_point = context.fixed_point;
     std::cout << "Copy assignment operator called" << std::endl;
     return *this;
 }
