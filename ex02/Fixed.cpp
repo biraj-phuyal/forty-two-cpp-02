@@ -75,17 +75,11 @@ Fixed Fixed::operator-(const Fixed& other) const {
 }
 
 Fixed Fixed::operator*(const Fixed& other) const {
-    Fixed result;
-    double raw = static_cast<double>(this->fixed_point) * other.fixed_point / (1 << bits);
-    result.fixed_point = static_cast<int>(raw + (raw >= 0 ? 0.5 : -0.5));
-    return result;
+    return (this->toFloat() * other.toFloat());
 }
 
 Fixed Fixed::operator/(const Fixed& other) const {
-    Fixed result;
-    double raw = static_cast<double>(this->fixed_point) * (1 << bits) / other.fixed_point;
-    result.fixed_point = static_cast<int>(raw + (raw >= 0 ? 0.5 : -0.5));
-    return result;
+    return (this->toFloat() / other.toFloat());
 }
 
 Fixed& Fixed::operator++() {
